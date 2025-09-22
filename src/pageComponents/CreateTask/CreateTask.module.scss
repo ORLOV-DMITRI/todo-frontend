@@ -1,0 +1,111 @@
+@use '../../styles/variables' as *;
+
+.container {
+  background-color: $bg-dark;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid $card-gray;
+
+  @include sm {
+    padding: 16px;
+  }
+}
+
+.backButton {
+  background: none;
+  border: none;
+  color: $text-white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+
+  @include hover {
+    color: $modern-indigo;
+  }
+}
+
+.date {
+  color: $text-gray;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.counter {
+  color: $text-gray;
+  font-size: 12px;
+  min-width: 60px;
+  text-align: right;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+
+  @include sm {
+    padding: 16px;
+  }
+}
+
+.titleInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: $text-white;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+  font-family: inherit;
+
+  &::placeholder {
+    color: $text-gray;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @include sm {
+    font-size: 20px;
+  }
+}
+
+.saveButton {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  padding: 16px;
+  background-color: $modern-indigo;
+  color: $text-white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  @include hover {
+    background-color: $modern-indigo-hover;
+  }
+
+  &:disabled {
+    background-color: $card-gray;
+    color: $text-gray;
+    cursor: not-allowed;
+  }
+
+  @include sm {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    padding: 14px;
+    font-size: 14px;
+  }
+}

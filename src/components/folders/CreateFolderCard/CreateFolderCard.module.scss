@@ -1,0 +1,52 @@
+@use '../../../styles/variables' as *;
+
+.wrapper {
+  position: fixed;
+  bottom: 0;
+  background-color: $bg-dark;
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  width: 730px;
+  background-color: $card-gray;
+  border: 1px dashed $text-gray;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 60px;
+
+  &:hover {
+    border-color: $button-yellow;
+    background-color: rgba(255, 235, 59, 0.05);
+  }
+}
+
+.icon {
+  font-size: 24px;
+  font-weight: bold;
+  color: $button-yellow;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex: 1;
+}
+
+.text {
+  color: $text-gray;
+  font-size: 16px;
+  font-weight: 500;
+}

@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as *;
+
+.card {
+  background-color: $card-gray;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &:hover {
+    border-color: $text-gray;
+  }
+
+  &.selected {
+    border-color: $modern-indigo;
+    background-color: rgba(99, 102, 241, 0.1);
+  }
+}
+
+.icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  color: $text-white;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.count {
+  color: $text-gray;
+  font-size: 14px;
+}

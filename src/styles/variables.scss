@@ -1,0 +1,111 @@
+// Основные цвета (темная тема)
+$bg-dark: #1a1a1a;        // темный фон
+$card-gray: #2d2d2d;      // серые карточки
+$text-gray: #9ca3af;      // серый текст
+$text-white: #ffffff;     // белый активный текст
+$button-yellow: #fbbf24;  // желтые кнопки
+
+// Дополнительные цвета
+$hover-color: #AC92DB;
+$dark-blue: #4000B1;
+$accent-yellow: #D9E021;
+
+// Современная цветовая схема
+$modern-indigo: #6366f1;
+$modern-indigo-hover: #4f46e5;
+
+
+@mixin hover-icon {
+  @include hover {
+    fill: $hover-color;
+  }
+  @include active {
+    fill: $yellow;
+  }
+
+}
+@mixin hover-text {
+  @include hover {
+    color: $hover-color;
+  }
+  @include active {
+    color: $dark-blue;
+  }
+}
+
+@mixin fullhd {
+  @media (width <= 1920px) {
+    @content;
+  }
+}
+
+@mixin xl-big {
+  @media (width <= 1600px) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (width <= 1440px) {
+    @content;
+  }
+}
+
+@mixin xl-lg {
+  @media (width <= 1366px) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (width <= 1280px) {
+    @content;
+  }
+}
+
+@mixin lg-md {
+  @media (width <= 1024px) {
+    @content;
+  }
+}
+@mixin md {
+  @media (width <= 992px) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (width <= 768px) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @media (width <= 600px) {
+    @content;
+  }
+}
+
+@mixin xs-mini {
+  @media (width <= 400px) {
+    @content;
+  }
+}
+
+@mixin hover {
+  & {
+    transition: 0.3s;
+  }
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+@mixin active {
+  @media (hover: hover) {
+    &:active {
+      @content;
+    }
+  }
+}

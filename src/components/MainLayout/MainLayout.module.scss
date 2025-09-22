@@ -1,0 +1,32 @@
+@use '../../styles/variables' as *;
+
+.layout {
+  min-height: 100vh;
+  background-color: $bg-dark;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-bottom: 80px;
+  min-height: calc(100vh - 160px);
+
+  &.fullHeight {
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 100vh;
+  }
+
+  @include sm {
+    padding-top: 10px;
+    padding-bottom: 70px;
+    min-height: calc(100vh - 140px);
+
+    &.fullHeight {
+      padding-top: 0;
+      padding-bottom: 0;
+      min-height: 100vh;
+    }
+  }
+}

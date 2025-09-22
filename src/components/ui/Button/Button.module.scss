@@ -1,0 +1,110 @@
+@use '../../../styles/variables' as *;
+
+
+.btn {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  border-radius: 42px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  transition: all 0.2s ease;
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.loading {
+    .content {
+      opacity: 0.7;
+    }
+  }
+}
+
+.small {
+  font-size: 16px;
+  padding: 10px 30px 12px 30px;
+  min-height: 44px;
+}
+
+.big {
+  font-size: 18px;
+  padding: 12px 40px 14px 40px;
+  min-height: 50px;
+
+  @include xs {
+    font-size: 16px;
+    padding: 0;
+    min-height: 42px;
+  }
+}
+
+.primary {
+  background-color: $modern-indigo;
+  color: $text-white;
+
+  &:hover:not(.disabled) {
+    background-color: $modern-indigo-hover;
+  }
+
+  &:active:not(.disabled) {
+    background-color: $modern-indigo;
+    border: 1px solid $button-yellow;
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: $modern-indigo;
+  border: 2px solid $modern-indigo;
+
+  &:hover:not(.disabled) {
+    background-color: $modern-indigo;
+    color: $text-white;
+  }
+
+  &:active:not(.disabled) {
+    background-color: $modern-indigo-hover;
+    border-color: $modern-indigo-hover;
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: $text-gray;
+  border: 1px solid $text-gray;
+
+  &:hover:not(.disabled) {
+    background-color: $card-gray;
+    border-color: $text-white;
+  }
+
+  &:active:not(.disabled) {
+    background-color: $bg-dark;
+  }
+}
+
+// Spinner для loading состояния
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.content {
+  transition: opacity 0.2s ease;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

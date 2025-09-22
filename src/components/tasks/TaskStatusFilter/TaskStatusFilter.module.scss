@@ -1,0 +1,86 @@
+@use '../../../styles/variables' as *;
+
+.container {
+  background-color: $bg-dark;
+  padding-bottom: 20px;
+  @include sm {
+    padding-bottom: 5px;
+  }
+}
+
+.filters {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 20px;
+  gap: 8px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @include sm {
+    padding: 0 5px;
+    gap: 6px;
+  }
+}
+
+.filter {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: $text-gray;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+  background: transparent;
+
+  @include hover {
+    background-color: $card-gray;
+    color: $text-white;
+  }
+
+  &.active {
+    background-color: $card-gray;
+    color: $text-white;
+
+    .count {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: $text-white;
+    }
+  }
+
+  @include sm {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+.label {
+  // Основной текст фильтра
+}
+
+.count {
+  background-color: $card-gray;
+  color: $text-gray;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+
+  @include sm {
+    font-size: 11px;
+    padding: 1px 6px;
+  }
+}

@@ -1,0 +1,81 @@
+@use '../../../styles/variables' as *;
+
+.container {
+  width: 100%;
+  position: relative;
+}
+
+.list {
+  padding-top: 20px;
+  padding-bottom: 150px;
+  padding-right: 20px;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: #1a1a1a;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    border-radius: 6px;
+    border: 2px solid #1a1a1a;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #6a6a6a;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #2a2a2a;
+  }
+
+  @include sm {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    padding-right: 0;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.empty {
+  text-align: center;
+  margin-top: 40px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyIcon {
+  width: 50px;
+  height: 50px;
+}
+
+.emptyText {
+  color: $text-gray;
+  font-size: 16px;
+  margin: 0 0 20px 0;
+}
+
+.create {
+  width: 50px;
+  height: 50px;
+  background-color: $button-yellow;
+  color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  position: fixed;
+  top: 80%;
+  right: 30%;
+
+  @include sm {
+    right: 3%;
+  }
+}

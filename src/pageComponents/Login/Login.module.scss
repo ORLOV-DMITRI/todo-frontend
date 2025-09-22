@@ -1,0 +1,107 @@
+@use '../../styles/variables' as *;
+
+.container {
+  min-height: 100vh;
+  background-color: $bg-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  @include sm {
+    padding: 0;
+  }
+}
+
+.form {
+  width: 100%;
+  max-width: 400px;
+  background-color: $card-gray;
+  border-radius: 16px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include sm {
+    max-width: none;
+    border-radius: 0;
+    padding: 32px 24px;
+    gap: 20px;
+    min-height: 100vh;
+    justify-content: center;
+  }
+}
+
+.title {
+  color: $text-white;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+
+  @include sm {
+    font-size: 28px;
+  }
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.divider {
+  text-align: center;
+  color: $text-gray;
+  font-size: 16px;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background-color: $text-gray;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.oauthButtons {
+  display: flex;
+  justify-content: center;
+
+  button {
+    min-width: 200px;
+  }
+}
+
+.linkToRegister {
+  text-align: center;
+  color: $text-gray;
+  font-size: 16px;
+}
+
+.link {
+  color: $modern-indigo;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

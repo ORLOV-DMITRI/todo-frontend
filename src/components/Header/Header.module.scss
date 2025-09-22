@@ -1,0 +1,81 @@
+@use '../../styles/variables' as *;
+
+.header {
+  background-color: $bg-dark;
+  padding: 16px 0;
+  border-bottom: 1px solid $text-gray;
+
+  @include xs {
+    padding: 10px 0;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  color: $text-white;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+
+  @include sm {
+    font-size: 18px;
+  }
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: $text-gray;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $text-white;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.iconSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: $text-gray;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $text-white;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
