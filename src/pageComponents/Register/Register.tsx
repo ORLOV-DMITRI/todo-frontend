@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Button, Input } from '@/components/ui';
 import { authService, RegisterCredentials } from '@/lib/auth/authService';
 import { useAuth } from '@/lib/auth/authContext';
-import styles from './register.module.scss';
+import styles from './Register.module.scss';
 import {useRouter} from "next/navigation";
 
 export default function RegisterPage() {
