@@ -50,3 +50,5 @@
 | 📱 Selection Mode | ✅ | Long press + массовые операции |
 | 🎨 Modern UI | ✅ | Mobile-first + темная тема |
 | ⚡ Performance | ✅ | React Query + оптимизации |
+
+
