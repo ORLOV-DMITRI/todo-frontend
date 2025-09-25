@@ -27,10 +27,8 @@
   background: none;
   border: none;
   color: $text-white;
-  font-size: 20px;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
+  width: 30px;
 }
 
 .date {
@@ -113,12 +111,13 @@
 .saveBtn {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: $modern-indigo;
   color: $text-white;
   border: none;
   border-radius: 50px;
-  padding: 12px 24px;
+  padding: 16px 44px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -135,8 +134,7 @@
 
   @include sm {
     bottom: 16px;
-    right: 16px;
-    padding: 10px 20px;
+    padding: 12px 40px;
     font-size: 12px;
   }
 }

@@ -18,9 +18,10 @@ export default function MainLayout({ children, className }: Props) {
 
   const hiddenPaths = ['/folders', '/notes/create', '/tasks/create'];
   const isEditNotePage = pathname?.startsWith('/notes/edit/');
+  const isEditTaskPage = pathname?.startsWith('/tasks/edit/');
   const isAuthPage = pathname === '/login' || pathname === '/register';
 
-  const shouldHideNavigation = hiddenPaths.includes(pathname || '') || isEditNotePage || isAuthPage || !isAuthenticated;
+  const shouldHideNavigation = hiddenPaths.includes(pathname || '') || isEditNotePage || isEditTaskPage || isAuthPage || !isAuthenticated;
 
   return (
     <div className={cn(styles.layout, className)}>

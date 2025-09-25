@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useNote, useUpdateNote, useDeleteNote } from "@/lib/hooks/useNotes";
 import TrashIcon from '/public/svg/trash.svg';
+import ArrowIcon from '/public/svg/arrowBack.svg';
 import styles from "./EditNote.module.scss";
 
 type Props = {
@@ -19,7 +20,6 @@ export default function EditNote({ noteId }: Props) {
 
   const updateNoteMutation = useUpdateNote();
   const deleteNoteMutation = useDeleteNote();
-  console.log(note)
 
   const currentDate = new Date().toLocaleDateString('ru-RU');
 
@@ -91,7 +91,7 @@ export default function EditNote({ noteId }: Props) {
     <div className={styles.container}>
       <div className={styles.header}>
         <button className={styles.backBtn} onClick={handleSave}>
-          ←
+          <ArrowIcon/>
         </button>
         <div className={styles.date}>{currentDate}</div>
         <button className={styles.deleteBtn} onClick={handleDelete}>

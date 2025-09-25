@@ -69,40 +69,6 @@
   }
 }
 
-.titlePlaceholder {
-  background: none;
-  border: none;
-  color: $text-gray;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: left;
-  padding: 12px 0;
-  cursor: pointer;
-  margin-bottom: 16px;
-  border-bottom: 1px solid transparent;
-
-  @include hover {
-    color: $text-white;
-    border-bottom-color: $text-gray;
-  }
-}
-
-.titleInput {
-  background: none;
-  border: none;
-  border-bottom: 1px solid $modern-indigo;
-  color: $text-white;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 12px 0;
-  margin-bottom: 16px;
-  outline: none;
-
-  &::placeholder {
-    color: $text-gray;
-  }
-}
-
 .textarea {
   flex: 1;
   background: none;

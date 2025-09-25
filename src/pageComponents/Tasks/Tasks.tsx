@@ -34,8 +34,7 @@ export default function Tasks() {
   };
 
   const handleEditTask = (taskId: string) => {
-    // TODO: Реализовать редактирование задач
-    console.log('Edit task:', taskId);
+    router.push(`/tasks/edit/${taskId}`);
   };
 
   return (

@@ -69,7 +69,7 @@ export default function CreateTask() {
       </div>
 
       <button
-        className={styles.saveButton}
+        className={styles.saveBtn}
         onClick={handleSave}
         disabled={!title.trim() || createTaskMutation.isPending}
       >

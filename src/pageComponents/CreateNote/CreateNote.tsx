@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCreateNote } from "@/lib/hooks/useNotes";
 import styles from "./CreateNote.module.scss";
+import ArrowIcon from '/public/svg/arrowBack.svg';
 
 export default function CreateNote() {
   const router = useRouter();
@@ -46,7 +47,7 @@ export default function CreateNote() {
     <div className={styles.container}>
       <div className={styles.header}>
         <button className={styles.backBtn} onClick={handleSave}>
-          ←
+          <ArrowIcon/>
         </button>
         <div className={styles.date}>{currentDate}</div>
         <div className={styles.charCount}>{characterCount} символов</div>

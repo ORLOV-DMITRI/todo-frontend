@@ -7,6 +7,7 @@ import { useFolders, useCreateFolder, useUpdateFolder, useDeleteFolder } from "@
 import FolderList from "@/components/folders/FolderList/FolderList";
 import FolderModal from "@/components/folders/FolderModal/FolderModal";
 import styles from "./Folders.module.scss";
+import ArrowIcon from '/public/svg/arrowBack.svg';
 
 export default function Folders() {
   const router = useRouter();
@@ -97,7 +98,7 @@ export default function Folders() {
     <div className={styles.container}>
       <div className={styles.header}>
         <button className={styles.backBtn} onClick={handleBackClick} title="К папке Все">
-          ←
+          <ArrowIcon/>
         </button>
         <h1 className={styles.title}>Управление папками</h1>
       </div>
