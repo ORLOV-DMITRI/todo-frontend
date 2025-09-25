@@ -18,6 +18,7 @@ export default function NoteCard({ note, isSelected, onClick }: Props) {
       minute: '2-digit'
     });
   };
+  console.log(note)
 
   const getPreview = (content: string) => {
     return content.length > 100 ? content.substring(50, 100) + '...' : content;
@@ -35,6 +36,9 @@ export default function NoteCard({ note, isSelected, onClick }: Props) {
         <div className={styles.meta}>
           <span className={styles.date}>{formatDate(note.updatedAt)}</span>
         </div>
+      </div>
+      <div className={styles.info}>
+        <div className={styles.folder}>{note.folder?.name}</div>
       </div>
     </div>
   );
