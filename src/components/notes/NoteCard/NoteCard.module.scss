@@ -78,3 +78,32 @@
   padding: 2px 6px;
   border-radius: 4px;
 }
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.checkboxCircle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $text-gray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &.checked {
+    background-color: $modern-indigo;
+    border-color: $modern-indigo;
+  }
+}
+
+.checkmark {
+  color: $text-white;
+  font-size: 12px;
+  font-weight: bold;
+}

@@ -8,13 +8,34 @@ import PlusIcon from '/public/svg/plus.svg'
 type Props = {
   notes: Note[];
   onCreateNote: () => void;
+  isSelectionMode?: boolean;
+  selectedNotes?: Set<string>;
+  onToggleSelection?: (noteId: string) => void;
+  onEnterSelectionMode?: (noteId: string) => void;
 };
 
-export default function NoteList({ notes, onCreateNote }: Props) {
+export default function NoteList({
+  notes,
+  onCreateNote,
+  isSelectionMode,
+  selectedNotes,
+  onToggleSelection,
+  onEnterSelectionMode
+}: Props) {
   const router = useRouter();
 
   const handleNoteClick = (noteId: string) => {
-    router.push(`/notes/edit/${noteId}`);
+    if (onToggleSelection) {
+      onToggleSelection(noteId);
+    } else {
+      router.push(`/notes/edit/${noteId}`);
+    }
+  };
+
+  const handleNoteLongPress = (noteId: string) => {
+    if (onEnterSelectionMode) {
+      onEnterSelectionMode(noteId);
+    }
   };
 
   return (
@@ -33,8 +54,10 @@ export default function NoteList({ notes, onCreateNote }: Props) {
               <NoteCard
                 key={note.id}
                 note={note}
-                isSelected={false}
+                isSelected={selectedNotes?.has(note.id) || false}
                 onClick={() => handleNoteClick(note.id)}
+                onLongPress={() => handleNoteLongPress(note.id)}
+                isSelectionMode={isSelectionMode}
               />
             ))}
           </div>

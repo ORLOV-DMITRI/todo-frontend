@@ -31,7 +31,6 @@ export default function Header() {
     return null;
   }
 
-  // Скрывать Header на этих страницах
   const hiddenPaths = ['/folders', '/notes/create', '/tasks/create'];
   const isEditNotePage = pathname?.startsWith('/notes/edit/');
 
@@ -39,7 +38,6 @@ export default function Header() {
     return null;
   }
 
-  // Определяем заголовок и показ иконки папки
   const isTasksPage = pathname === '/tasks';
   const pageTitle = isTasksPage ? 'Задачи' : 'Заметки';
   const showFolderIcon = !isTasksPage;

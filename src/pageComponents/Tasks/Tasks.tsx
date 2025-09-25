@@ -16,11 +16,9 @@ export default function Tasks() {
 
   const taskCounts = useMemo(() => {
     if (selectedStatus !== 'all') {
-      // При фильтрации не показываем счетчики для других статусов
       return undefined;
     }
 
-    // Загружаем все задачи для подсчета
     const allTasks = tasks;
     return {
       all: allTasks.length,
