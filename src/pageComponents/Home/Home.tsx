@@ -7,6 +7,9 @@ import { useFolders } from "@/lib/hooks/useFolders";
 import FolderTabs from "@/components/folders/FolderTabs/FolderTabs";
 import NoteList from "@/components/notes/NoteList/NoteList";
 import SelectionActionBar from "@/components/SelectionActionBar/SelectionActionBar";
+import ConfirmDialog from "@/components/ui/ConfirmDialog/ConfirmDialog";
+import { useConfirmDialog } from "@/components/ui/ConfirmDialog/useConfirmDialog";
+import { formatNotesCount } from "@/lib/utils/pluralize";
 import styles from "./Home.module.scss";
 
 export default function Home() {
@@ -20,6 +23,7 @@ export default function Home() {
   const { data: notes = [], isLoading, error } = useNotes(selectedFolderId);
   const { data: folders = [] } = useFolders();
   const deleteNoteMutation = useDeleteNote();
+  const { dialogState, showConfirm } = useConfirmDialog();
 
   const allFolder = folders?.find(f => f.isSystem);
 
@@ -73,8 +77,12 @@ export default function Home() {
   const handleDeleteSelected = async () => {
     if (selectedNotes.size === 0) return;
 
-    const confirmMessage = `Удалить ${selectedNotes.size} заметок?`;
-    if (!window.confirm(confirmMessage)) return;
+    const confirmed = await showConfirm({
+      title: 'Удалить заметки',
+      message: `Вы действительно хотите удалить ${formatNotesCount(selectedNotes.size)}? Это действие нельзя отменить.`
+    });
+
+    if (!confirmed) return;
 
     try {
       await Promise.all([...selectedNotes].map(noteId =>
@@ -128,6 +136,16 @@ export default function Home() {
           onCancel={handleCancelSelection}
         />
       )}
+
+      <ConfirmDialog
+        isOpen={dialogState.isOpen}
+        title={dialogState.title}
+        message={dialogState.message}
+        confirmText={dialogState.confirmText}
+        cancelText={dialogState.cancelText}
+        onConfirm={dialogState.onConfirm}
+        onCancel={dialogState.onCancel}
+      />
     </div>
   );
 }

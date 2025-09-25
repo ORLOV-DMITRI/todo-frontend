@@ -6,6 +6,8 @@ import { useTask, useUpdateTask, useDeleteTask } from "@/lib/hooks/useTasks";
 import TrashIcon from '/public/svg/trash.svg';
 import styles from "./EditTask.module.scss";
 import ArrowIcon from '/public/svg/arrowBack.svg';
+import ConfirmDialog from "@/components/ui/ConfirmDialog/ConfirmDialog";
+import { useConfirmDialog } from "@/components/ui/ConfirmDialog/useConfirmDialog";
 
 type Props = {
   taskId: string;
@@ -18,6 +20,7 @@ export default function EditTask({ taskId }: Props) {
 
   const updateTaskMutation = useUpdateTask();
   const deleteTaskMutation = useDeleteTask();
+  const { dialogState, showConfirm } = useConfirmDialog();
 
   const currentDate = new Date().toLocaleDateString('ru-RU');
 
@@ -46,11 +49,12 @@ export default function EditTask({ taskId }: Props) {
   const handleDelete = async () => {
     if (!task) return;
 
-    const confirmDelete = window.confirm(
-      `Удалить задачу "${task.title}"?`
-    );
+    const confirmed = await showConfirm({
+      title: 'Удалить задачу',
+      message: `Вы действительно хотите удалить задачу "${task.title}"? Это действие нельзя отменить.`
+    });
 
-    if (!confirmDelete) return;
+    if (!confirmed) return;
 
     try {
       await deleteTaskMutation.mutateAsync(task.id);
@@ -114,6 +118,16 @@ export default function EditTask({ taskId }: Props) {
           {updateTaskMutation.isPending ? 'Сохранение...' : 'Сохранить'}
         </button>
       )}
+
+      <ConfirmDialog
+        isOpen={dialogState.isOpen}
+        title={dialogState.title}
+        message={dialogState.message}
+        confirmText={dialogState.confirmText}
+        cancelText={dialogState.cancelText}
+        onConfirm={dialogState.onConfirm}
+        onCancel={dialogState.onCancel}
+      />
     </div>
   );
 }

@@ -7,6 +7,9 @@ import { TaskStatus } from "@/lib/api/tasksService";
 import TaskStatusFilter from "@/components/tasks/TaskStatusFilter/TaskStatusFilter";
 import TaskList from "@/components/tasks/TaskList/TaskList";
 import SelectionActionBar from "@/components/SelectionActionBar/SelectionActionBar";
+import ConfirmDialog from "@/components/ui/ConfirmDialog/ConfirmDialog";
+import { useConfirmDialog } from "@/components/ui/ConfirmDialog/useConfirmDialog";
+import { formatTasksCount } from "@/lib/utils/pluralize";
 import styles from "./Tasks.module.scss";
 
 export default function Tasks() {
@@ -19,6 +22,7 @@ export default function Tasks() {
 
   const { data: tasks = [], isLoading, error } = useTasks(selectedStatus);
   const deleteTaskMutation = useDeleteTask();
+  const { dialogState, showConfirm } = useConfirmDialog();
 
   const taskCounts = useMemo(() => {
     if (selectedStatus !== 'all') {
@@ -77,8 +81,12 @@ export default function Tasks() {
   const handleDeleteSelected = async () => {
     if (selectedTasks.size === 0) return;
 
-    const confirmMessage = `Удалить ${selectedTasks.size} задач?`;
-    if (!window.confirm(confirmMessage)) return;
+    const confirmed = await showConfirm({
+      title: 'Удалить задачи',
+      message: `Вы действительно хотите удалить ${formatTasksCount(selectedTasks.size)}? Это действие нельзя отменить.`
+    });
+
+    if (!confirmed) return;
 
     try {
       await Promise.all([...selectedTasks].map(taskId =>
@@ -133,6 +141,16 @@ export default function Tasks() {
           onCancel={handleCancelSelection}
         />
       )}
+
+      <ConfirmDialog
+        isOpen={dialogState.isOpen}
+        title={dialogState.title}
+        message={dialogState.message}
+        confirmText={dialogState.confirmText}
+        cancelText={dialogState.cancelText}
+        onConfirm={dialogState.onConfirm}
+        onCancel={dialogState.onCancel}
+      />
     </div>
   );
 }

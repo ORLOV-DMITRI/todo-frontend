@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useNote, useUpdateNote, useDeleteNote } from "@/lib/hooks/useNotes";
 import TrashIcon from '/public/svg/trash.svg';
 import ArrowIcon from '/public/svg/arrowBack.svg';
+import ConfirmDialog from "@/components/ui/ConfirmDialog/ConfirmDialog";
+import { useConfirmDialog } from "@/components/ui/ConfirmDialog/useConfirmDialog";
 import styles from "./EditNote.module.scss";
 
 type Props = {
@@ -20,6 +22,7 @@ export default function EditNote({ noteId }: Props) {
 
   const updateNoteMutation = useUpdateNote();
   const deleteNoteMutation = useDeleteNote();
+  const { dialogState, showConfirm } = useConfirmDialog();
 
   const currentDate = new Date().toLocaleDateString('ru-RU');
 
@@ -51,11 +54,12 @@ export default function EditNote({ noteId }: Props) {
   const handleDelete = async () => {
     if (!note) return;
 
-    const confirmDelete = window.confirm(
-      `Удалить заметку "${note.title || 'Без названия'}"?`
-    );
+    const confirmed = await showConfirm({
+      title: 'Удалить заметку',
+      message: `Вы действительно хотите удалить заметку "${note.title || 'Без названия'}"? Это действие нельзя отменить.`
+    });
 
-    if (!confirmDelete) return;
+    if (!confirmed) return;
 
     try {
       await deleteNoteMutation.mutateAsync(note.id);
@@ -137,6 +141,16 @@ export default function EditNote({ noteId }: Props) {
           {updateNoteMutation.isPending ? 'Сохранение...' : 'Сохранить'}
         </button>
       )}
+
+      <ConfirmDialog
+        isOpen={dialogState.isOpen}
+        title={dialogState.title}
+        message={dialogState.message}
+        confirmText={dialogState.confirmText}
+        cancelText={dialogState.cancelText}
+        onConfirm={dialogState.onConfirm}
+        onCancel={dialogState.onCancel}
+      />
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { Folder } from "@/lib/api/foldersService";
 import { useFolders, useCreateFolder, useUpdateFolder, useDeleteFolder } from "@/lib/hooks/useFolders";
 import FolderList from "@/components/folders/FolderList/FolderList";
 import FolderModal from "@/components/folders/FolderModal/FolderModal";
+import ConfirmDialog from "@/components/ui/ConfirmDialog/ConfirmDialog";
+import { useConfirmDialog } from "@/components/ui/ConfirmDialog/useConfirmDialog";
 import styles from "./Folders.module.scss";
 import ArrowIcon from '/public/svg/arrowBack.svg';
 
@@ -18,6 +20,7 @@ export default function Folders() {
   const createFolderMutation = useCreateFolder();
   const updateFolderMutation = useUpdateFolder();
   const deleteFolderMutation = useDeleteFolder();
+  const { dialogState, showConfirm } = useConfirmDialog();
 
   const handleCreateFolder = () => {
     setEditingFolder(null);
@@ -29,14 +32,15 @@ export default function Folders() {
     setIsModalOpen(true);
   };
 
-  const handleDeleteFolder = (folder: Folder) => {
+  const handleDeleteFolder = async (folder: Folder) => {
     if (folder.isSystem) return;
 
-    const confirmDelete = window.confirm(
-      `Удалить папку "${folder.name}"? Все заметки в ней будут перемещены в папку "Все".`
-    );
+    const confirmed = await showConfirm({
+      title: 'Удалить папку',
+      message: `Вы действительно хотите удалить папку "${folder.name}"? Все заметки в ней будут перемещены в папку "Все".`
+    });
 
-    if (!confirmDelete) return;
+    if (!confirmed) return;
 
     deleteFolderMutation.mutate(folder.id);
   };
@@ -128,6 +132,16 @@ export default function Folders() {
         folder={editingFolder}
         onClose={closeModal}
         onSave={handleSaveFolder}
+      />
+
+      <ConfirmDialog
+        isOpen={dialogState.isOpen}
+        title={dialogState.title}
+        message={dialogState.message}
+        confirmText={dialogState.confirmText}
+        cancelText={dialogState.cancelText}
+        onConfirm={dialogState.onConfirm}
+        onCancel={dialogState.onCancel}
       />
     </div>
   );
