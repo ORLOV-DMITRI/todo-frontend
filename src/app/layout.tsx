@@ -7,8 +7,11 @@ import { AuthProvider } from "@/lib/auth/authContext";
 import MainLayout from "@/components/MainLayout/MainLayout";
 
 export const metadata = {
-  title: 'Todo App',
-  description: 'Mobile-first todo application',
+  title: 'TaskFlow',
+  description: 'Умное управление задачами и заметками',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
