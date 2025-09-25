@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCreateTask } from "@/lib/hooks/useTasks";
 import styles from "./CreateTask.module.scss";
+import ArrowIcon from '/public/svg/arrowBack.svg';
 
 export default function CreateTask() {
   const router = useRouter();
@@ -47,8 +48,8 @@ export default function CreateTask() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <button className={styles.backButton} onClick={handleBack}>
-          ←
+        <button className={styles.backBtn} onClick={handleSave}>
+          <ArrowIcon/>
         </button>
         <div className={styles.date}>{formatDate()}</div>
         <div className={styles.counter}>
