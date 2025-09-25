@@ -44,10 +44,10 @@ export default function SelectionActionBar({
           </button>
 
           <button
-            className={styles.cancelBtn}
+            className={cn(styles.actionBtn, styles.cancelBtn)}
             onClick={onCancel}
           >
-            ✕
+            Отменить
           </button>
         </div>
       </div>

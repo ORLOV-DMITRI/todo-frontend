@@ -6,9 +6,10 @@
   padding: 16px;
   cursor: pointer;
   margin-bottom: 12px;
-
-  @include hover {
-    background-color: color.adjust($card-gray,$lightness: 5%);
+  display: flex;
+  border: 1px solid transparent;
+  &:hover {
+    border-color: $text-gray;
   }
 
   &.completed {
@@ -17,8 +18,8 @@
   }
 
   &.selected {
-    border: 1px solid $modern-indigo;
-    background-color: rgba(99, 102, 241, 0.1);
+    border-color: $text-gray;
+    background-color: $bg-dark;
   }
 
   @include sm {
@@ -30,6 +31,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 1;
 }
 
 .checkbox {
@@ -61,7 +63,7 @@
 }
 
 .main {
-  flex: 1;
+  flex: 1 1;
   min-width: 0;
 }
 
