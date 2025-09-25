@@ -17,8 +17,8 @@
   }
 
   &.selected {
-    border-color: $modern-indigo;
-    background-color: rgba(99, 102, 241, 0.1);
+    border-color: $text-gray;
+    background-color: $bg-dark;
   }
 }
 
@@ -97,8 +97,8 @@
   transition: all 0.2s ease;
 
   &.checked {
-    background-color: $modern-indigo;
-    border-color: $modern-indigo;
+    background-color: $button-yellow;
+    border-color: $button-yellow;
   }
 }
 

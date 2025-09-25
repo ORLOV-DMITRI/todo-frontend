@@ -9,9 +9,21 @@ type Props = {
   tasks: Task[];
   onCreateTask: () => void;
   onEditTask?: (taskId: string) => void;
+  isSelectionMode?: boolean;
+  selectedTasks?: Set<string>;
+  onToggleSelection?: (taskId: string) => void;
+  onEnterSelectionMode?: (taskId: string) => void;
 };
 
-export default function TaskList({ tasks, onCreateTask, onEditTask }: Props) {
+export default function TaskList({
+  tasks,
+  onCreateTask,
+  onEditTask,
+  isSelectionMode,
+  selectedTasks,
+  onToggleSelection,
+  onEnterSelectionMode
+}: Props) {
   const toggleTaskMutation = useToggleTask();
 
   const handleToggle = (taskId: string) => {
@@ -19,8 +31,16 @@ export default function TaskList({ tasks, onCreateTask, onEditTask }: Props) {
   };
 
   const handleTaskClick = (taskId: string) => {
-    if (onEditTask) {
+    if (onToggleSelection) {
+      onToggleSelection(taskId);
+    } else if (onEditTask) {
       onEditTask(taskId);
+    }
+  };
+
+  const handleTaskLongPress = (taskId: string) => {
+    if (onEnterSelectionMode) {
+      onEnterSelectionMode(taskId);
     }
   };
 
@@ -41,6 +61,9 @@ export default function TaskList({ tasks, onCreateTask, onEditTask }: Props) {
               task={task}
               onToggle={handleToggle}
               onClick={() => handleTaskClick(task.id)}
+              onLongPress={() => handleTaskLongPress(task.id)}
+              isSelectionMode={isSelectionMode}
+              isSelected={selectedTasks?.has(task.id) || false}
             />
           ))}
         </div>

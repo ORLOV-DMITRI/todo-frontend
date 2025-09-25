@@ -16,6 +16,11 @@
     background-color: color.adjust($card-gray, $lightness: 3%);
   }
 
+  &.selected {
+    border: 1px solid $modern-indigo;
+    background-color: rgba(99, 102, 241, 0.1);
+  }
+
   @include sm {
     padding: 12px;
   }
@@ -85,4 +90,33 @@
   @include sm {
     font-size: 11px;
   }
+}
+
+.selectionCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.selectionCheckboxCircle {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $text-gray;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &.selectedCircle {
+    background-color: $modern-indigo;
+    border-color: $modern-indigo;
+  }
+}
+
+.selectionCheckmark {
+  color: $text-white;
+  font-size: 12px;
+  font-weight: bold;
 }

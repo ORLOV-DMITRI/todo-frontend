@@ -6,9 +6,12 @@ type Props = {
   task: Task;
   onToggle: (id: string) => void;
   onClick?: () => void;
+  onLongPress?: () => void;
+  isSelectionMode?: boolean;
+  isSelected?: boolean;
 };
 
-export default function TaskCard({ task, onToggle, onClick }: Props) {
+export default function TaskCard({ task, onToggle, onClick, onLongPress, isSelectionMode, isSelected }: Props) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ru-RU', {
@@ -24,10 +27,46 @@ export default function TaskCard({ task, onToggle, onClick }: Props) {
     onToggle(task.id);
   };
 
+  const handleMouseDown = () => {
+    if (!isSelectionMode && onLongPress) {
+      const timer = setTimeout(() => {
+        onLongPress();
+      }, 500); // 500ms для long press
+
+      const handleMouseUp = () => {
+        clearTimeout(timer);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+  };
+
+  const handleTouchStart = () => {
+    if (!isSelectionMode && onLongPress) {
+      const timer = setTimeout(() => {
+        onLongPress();
+      }, 500);
+
+      const handleTouchEnd = () => {
+        clearTimeout(timer);
+        document.removeEventListener('touchend', handleTouchEnd);
+      };
+
+      document.addEventListener('touchend', handleTouchEnd);
+    }
+  };
+
   return (
     <div
-      className={cn(styles.card, task.completed && styles.completed)}
+      className={cn(
+        styles.card,
+        task.completed && styles.completed,
+        isSelected && styles.selected
+      )}
       onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
     >
       <div className={styles.content}>
         <button
@@ -44,6 +83,14 @@ export default function TaskCard({ task, onToggle, onClick }: Props) {
           <span className={styles.date}>{formatDate(task.updatedAt)}</span>
         </div>
       </div>
+
+      {isSelectionMode && (
+        <div className={styles.selectionCheckbox}>
+          <div className={cn(styles.selectionCheckboxCircle, isSelected && styles.selectedCircle)}>
+            {isSelected && <span className={styles.selectionCheckmark}>✓</span>}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
