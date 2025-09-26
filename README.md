@@ -1,5 +1,7 @@
 # 🚀 TODO App - Production Ready Productivity System
 
+https://todo.dmitri-server.ru/
+
 ![Next.js](https://img.shields.io/badge/Next.js-14-black) ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue) ![React Query](https://img.shields.io/badge/React_Query-5.0-red) ![SCSS](https://img.shields.io/badge/SCSS-Modules-pink)
 
 
